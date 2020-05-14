@@ -28,7 +28,7 @@
     <script>
       function getValueOfCookie(cookieName) {
         const regExp = new RegExp(
-          `(?:(?:^|.*;\s*)${cookieName}\s*\=\s*([^;]*).*$)|^.*$`
+          `(?:(?:^|.*;\\s*)${cookieName}\\s*\\=\\s*([^;]*).*$)|^.*$`
         );
         var cookieValue = document.cookie.replace(regExp, "$1");
 
