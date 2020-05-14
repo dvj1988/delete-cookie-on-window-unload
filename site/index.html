@@ -4,14 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .button {
+        padding: 10px;
+        background: cornflowerblue;
+        text-transform: uppercase;
+        border: 1px solid black;
+        margin-right: 10px;
+      }
+    </style>
   </head>
   <body>
     <h4>
       Cookie reset on Window unload
     </h4>
 
-    <button onclick="setRedirectCookieFalse()">Set Redirect false</button>
-    <button onclick="alertValueOfCookie()">
+    <button class="button" onclick="setRedirectCookieFalse()">
+      Set Redirect false
+    </button>
+    <button class="button" onclick="alertValueOfCookie()">
       Alert
     </button>
     <script>
@@ -25,7 +36,7 @@
       }
 
       function alertValueOfCookie() {
-        alert(getValueOfCookie("redirect"));
+        alert(getValueOfCookie("redirect") || "The value is not set");
       }
 
       function setRedirectCookieFalse() {
@@ -40,7 +51,7 @@
         var cookieValue = getValueOfCookie("redirect");
 
         if (cookieValue === "false") {
-          document.cookie = deleteCookie("redirect");
+          deleteCookie("redirect");
         }
       }
 
