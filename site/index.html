@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>
+      Cookie reset on Window unload
+    </h4>
+
+    <button onclick="setRedirectCookieFalse()">Set Redirect false</button>
+    <button onclick="alertValueOfCookie()">
+      Alert
+    </button>
+    <script>
+      function getValueOfCookie(cookieName) {
+        const regExp = new RegExp(
+          `(?:(?:^|.*;\s*)${cookieName}\s*\=\s*([^;]*).*$)|^.*$`
+        );
+        var cookieValue = document.cookie.replace(regExp, "$1");
+
+        return cookieValue;
+      }
+
+      function alertValueOfCookie() {
+        alert(getValueOfCookie("redirect"));
+      }
+
+      function setRedirectCookieFalse() {
+        document.cookie = "redirect=false";
+      }
+
+      function deleteCookie(cookieName) {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      }
+
+      function resetCookieIfPresent() {
+        var cookieValue = getValueOfCookie("redirect");
+
+        if (cookieValue === "false") {
+          document.cookie = deleteCookie("redirect");
+        }
+      }
+
+      window.addEventListener("beforeunload", resetCookieIfPresent);
+    </script>
+  </body>
+</html>
